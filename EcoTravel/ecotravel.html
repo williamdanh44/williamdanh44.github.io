@@ -1,0 +1,241 @@
+﻿
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>EcoTravel Website</title>
+    <style>
+        body {
+            font-family: Times New Roman, serif;
+            text-align: center;
+        }
+
+        button {
+            display: inline-block;
+            outline: none;
+            cursor: pointer;
+            font-size: 16px;
+            line-height: 20px;
+            font-weight: 600;
+            border-radius: 8px;
+            padding: 14px 24px;
+            border: none;
+            transition: box-shadow 0.2s ease 0s, -ms-transform 0.1s ease 0s, -webkit-transform 0.1s ease 0s, transform 0.1s ease 0s;
+            background: linear-gradient(to right, rgb(230, 30, 77) 0%, rgb(227, 28, 95) 50%, rgb(215, 4, 102) 100%);
+            color: #fff;
+            }  
+
+        {
+            border-color: #000000;
+            background: #f7f7f7;
+        }
+                
+        }
+
+        #NavInfo {
+            margin-top: 20px;
+            padding: 20px;
+            border: 2px solid #000;
+            width: 50%;
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 18px;
+            background-color: #f4f4f4;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        .styled-table {
+            border-collapse: collapse;
+            margin: 25px 0;
+            font-size: 0.9em;
+            font-family: sans-serif;
+            min-width: 400px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+        }
+
+            .styled-table th,
+            .styled-table td {
+                padding: 12px 15px;
+            }
+
+            .styled-table tbody tr {
+                border-bottom: 1px solid #dddddd;
+            }
+
+                .styled-table tbody tr:nth-of-type(even) {
+                    background-color: #f3f3f3;
+                }
+
+                .styled-table tbody tr:last-of-type {
+                    border-bottom: 2px solid #009879;
+                }
+
+                .styled-table tbody tr.active-row {
+                    font-weight: bold;
+                    color: #009879;
+                }
+
+    </style>
+</head>
+<body>
+
+    <!-- Header displaying ecoTravel icon, slogan and welcome message -->
+    <header>
+        <img src="imgs/eco.png">
+        <h1>Discover the World, Sustainably</h1>
+        <p id="welcome-message"></p>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <button onclick="changeContent('Home')"> Home</button>
+        <button onclick="changeContent('Destination')"> Destination</button>
+        <button onclick="changeContent('Contact')"> Contact</button>
+        <button onclick="changeContent('About Us')"> About Us</button>
+    </nav>
+
+    <div id="NavInfo">
+        Select button to Navigate.
+    </div>
+
+    <!-- Script for the buttons -->
+    <script>
+    function changeContent(EcoTravel_Nav) {
+    const NavInfoDiv = document.getElementById("NavInfo");
+    let content = "";
+
+    switch (EcoTravel_Nav) {
+        case 'Home':
+            content = "<h2>Welcome to EcoTravel!</h2><p>Your journey towards sustainable travel starts here.</p>";
+            break;
+        case 'Destination':
+            content = "<h2>Our Destinations</h2><p>Explore the most beautiful eco-friendly destinations around the world!</p>";
+            break;
+        case 'Contact':
+            content = `
+                <h2>Contact Us</h2>
+                <form id="contact-form">
+                    <label for="name">Name:</label><br>
+                    <input type="text" id="name" name="name" required><br><br>
+                    <label for="email">Email:</label><br>
+                    <input type="email" id="email" name="email" required><br><br>
+                    <label for="message">Message:</label><br>
+                    <textarea id="message" name="message" required></textarea><br><br>
+                    <button type="submit">Submit</button>
+                </form>
+                <div id="form-response"></div>
+            `;
+            break;
+        case 'About Us':
+            content = "<h2>About Us</h2><p>At EcoTravel, we believe in promoting sustainable tourism.</p>";
+            break;
+        default:
+            content = "Select a button to Navigate.";
+    }
+
+    NavInfoDiv.innerHTML = content;
+
+    <!-- Handle form submission for Contact -->
+    if (EcoTravel_Nav === 'Contact') {
+        document.getElementById("contact-form").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const message = document.getElementById("message").value;
+
+            <!-- Simple response logic -->
+            const responseDiv = document.getElementById("form-response");
+            responseDiv.innerHTML = `<p>Thank you, ${name}! Your message has been received.</p>`;
+            document.getElementById("contact-form").reset(); // Reset form
+        });
+    }
+}
+</script>
+ <br>
+
+    <!-- Featured Image Section -->
+    <section class="featured-image-section">
+        <img src="imgs/amazon.jpg" alt="Eco Tourism" class="featured-image">
+        <div class="tagline">
+            <h3>Explore Eco-Friendly Travel Packages</h3>
+        </div>
+    </section>
+
+    <!-- Travel Packages -->
+    <h2>Travel Packages</h2>
+
+    <table class="styled-table" id="travel-packages" style="width:100%">
+        <tr>
+            <th>Destination</th>
+            <th>Duration</th>
+            <th>Price</th>
+            <th>Sustainability Rating</th>
+        </tr>
+        <tr>
+            <td>Amazon Rainforest</td>
+            <td>7 Days</td>
+            <td>$2,500</td>
+            <td>5 Stars</td>
+        </tr>
+        <tr>
+            <td>Costa Rica</td>
+            <td>5 Days</td>
+            <td>$1,500</td>
+            <td>4 Stars</td>
+        </tr>
+        <tr>
+            <td>Iceland Wilderness</td>
+            <td>10 Days</td>
+            <td>$3,000</td>
+            <td>5 Stars</td>
+        </tr>
+        <tr>
+            <td>Thailand Eco-Tour</td>
+            <td>7 Days</td>
+            <td>$2,200</td>
+            <td>4 Stars</td>
+        </tr>
+        <tr>
+            <td>Galapagos Adventure</td>
+            <td>8 Days</td>
+            <td>$3,500</td>
+            <td>5 Stars</td>
+        </tr>
+    </table> <br>
+
+    <!-- Highlight Button -->
+    <section>  <button id="highlight-button">Highlight Packages</button> </section> <br>
+
+    <!-- Embeded Map -->
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4043202.8256131145!2d-84.93997044999998!3d8.25889965!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8f92e56221acc925%3A0x6254f72535819a2b!2sCosta%20Rica!5e0!3m2!1sen!2sca!4v1729262055111!5m2!1sen!2sca"
+            width="450" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+
+    <!-- Contact info -->
+    <footer>
+        <div class="container">
+            <div class="contact-info">
+                <h2>Contact Us</h2>
+                <p><strong>Phone:</strong> (123) 456-7890</p>
+                <p><strong>Email:</strong> <a href="mailto:info@ecotravel.com">info@ecotravel.com</a></p>
+                <div class="social-media">
+                    <h4>Follow Us</h4>
+                    <a href="https://facebook.com/ecotravel" target="_blank">Facebook</a>
+                    <a href="https://twitter.com/ecotravel" target="_blank">Twitter</a>
+                    <a href="https://instagram.com/ecotravel" target="_blank">Instagram</a>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2024 Eco Travel. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <!-- Include Script -->
+    <script src="js/script.js"></script>
+</body>
+</html>
